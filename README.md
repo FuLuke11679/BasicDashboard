@@ -1,40 +1,100 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Next.js Dashboard with Django Backend
+This project consists of a Next.js frontend application that displays various charts, with data fetched from a Django backend API.
+Prerequisites
 
-## Getting Started
+Python 3.8+
+Node.js 14+
+npm or yarn
 
-First, run the development server:
+Run the backend in a seperate terminal before running the frontend.
 
-```bash
+Docker Setup (Incomplete):
+I tried but it was my first time using docker
+so I'm not sure if it works
+Run docker-compose up --build
+Frontend will now be running on 'http://localhost:3000'
+Backend will now be running on 'http://localhost:8000'
+
+Backend Setup (Django) (no docker):
+
+Navigate to backend directory:
+cd backend
+
+Create a virtual environment and activate it:
+'python -m venv venv'
+source venv/bin/activate on mac or linux 
+On Windows, use `venv\Scripts\activate`
+
+Install the required packages:
+pip install -r requirements.txt
+
+Run migrations:
+python manage.py migrate
+
+Start the Django development server:
+python manage.py runserver
+
+
+The backend should now be running at http://localhost:8000.
+
+Backend Setup (with Docker):
+
+Frontend Setup (Next.js) (no docker):
+
+Navigate to frontend directory:
+cd frontend
+
+Install the required packages:
+npm install
+# or
+yarn install
+
+Start the Next.js development server:
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+The frontend should now be accessible at http://localhost:3000.
+Libraries and Tools Used
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Backend:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Django
+Django REST Framework
+django-cors-headers
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+Frontend:
 
-To learn more about Next.js, take a look at the following resources:
+Next.js
+React
+TypeScript
+Chart.js
+react-chartjs-2
+lightweight-charts (for candlestick chart)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+Approach and Thought Process
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Backend:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Created simple Django views to serve hardcoded data for each chart type.
+Used Django REST Framework for easy API creation.
+Implemented CORS headers to allow the frontend to access the API.
+
+
+Frontend:
+
+Used Next.js with TypeScript for type safety and better developer experience.
+Implemented a responsive layout using CSS Grid.
+Fetched data from the Django backend using the useEffect hook.
+Used Chart.js and react-chartjs-2 for Line, Bar, and Pie charts due to their ease of use and customization options.
+Implemented a custom Candlestick chart using lightweight-charts for better performance with financial data.
+
+
+Integration:
+
+Ensured proper error handling when fetching data from the backend.
+Used TypeScript interfaces to ensure type safety when working with API data.
